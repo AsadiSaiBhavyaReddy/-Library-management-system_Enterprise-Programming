@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Librarian Registration</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <style>
+        /* Reset default margin and padding */
+        body, html {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            box-sizing: border-box; /* Include padding in element's width */
+            width: 100%; /* Full width for body */
+            background-color: #f0f0f0; /* Light grey background for the page */
+        }
+
+        /* Title Bar Styles */
+        .title-bar {
+            background-color: #222; /* Dark grey for the title bar */
+            color: #ffffff; /* White color for text */
+            padding: 30px 0; /* Increased padding for height adjustment */
+            text-align: center;
+            font-size: 120px; /* Increased font size for emphasis */
+            font-weight: bold; /* Bold font weight */
+            width: 100%; /* Full width of the viewport */
+            height: 150px; /* Fixed height for the title bar */
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Vertically center the text */
+            justify-content: center; /* Horizontally center the text */
+            line-height: 1.2; /* Adjust line height for vertical spacing */
+            position: fixed; /* Fix the title bar to the top */
+            top: 0; /* No space above the title bar */
+            left: 0; /* Align to the left */
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        /* Form Container Styles */
+        .form-container {
+            margin-top: 200px; /* Space for title bar */
+            padding: 20px;
+            max-width: 400px; /* Reduced maximum width for the form container */
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Default shadow */
+            background-color: #fff; /* White background for the form */
+            transition: box-shadow 0.3s ease-in-out; /* Smooth transition for shadow effect */
+            text-align: center; /* Center the text and avatar */
+        }
+
+        .form-container:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+        }
+
+        /* Avatar Styles */
+        .avatar {
+            width: 80px; /* Width of the avatar */
+            height: 80px; /* Height of the avatar */
+            border-radius: 50%; /* Make the image circular */
+            margin-bottom: 20px; /* Spacing below the avatar */
+        }
+
+        /* Form Styles */
+        h3 {
+            color: #333; /* Dark grey color for the form title */
+            font-size: 24px; /* Font size for form title */
+            margin-bottom: 20px; /* Spacing below the form title */
+        }
+
+        .button {
+            background-color: #d5724d; /* Green background for the submit button */
+            color: white; /* White text color for the submit button */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Padding for the button */
+            text-align: center; /* Center text in the button */
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Inline block for sizing */
+            font-size: 16px; /* Font size for button text */
+            margin: 4px 2px; /* Margin around the button */
+            cursor: pointer; /* Pointer cursor for button hover */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</h:head>
+<body>
+
+    <!-- Title Bar -->
+    <div class="title-bar">
+        Library Management System
+    </div>
+
+    <!-- Page Content -->
+    <div class="form-container">
+        <!-- Avatar Image -->
+        <img src="https://thumbs.dreamstime.com/b/librarian-icon-element-profession-avatar-mobile-concept-web-apps-detailed-can-be-used-white-background-132593948.jpg" alt="Avatar" class="avatar" />
+        <h3>Librarian Registration</h3>
+        <h:form>
+            <h:panelGrid columns="3" cellpadding="5">
+
+                <h:outputLabel for="id" value="Enter ID"/>
+                <h:inputText id="id" required="true" requiredMessage="Enter ID" value="#{libbean.id}"/>
+                <h:message for="id" style="color:red"/>
+
+                <h:outputLabel for="name" value="Enter Name"/>
+                <h:inputText id="name" required="true" requiredMessage="Enter Name" value="#{libbean.name}"/>
+                <h:message for="name" style="color:red"/>
+
+                <h:outputLabel for="gender" value="Select Gender"/>
+                <h:selectOneRadio id="gender" required="true" requiredMessage="Select Gender" value="#{libbean.gender}">
+                    <f:selectItem itemLabel="Male" itemValue="MALE"/>
+                    <f:selectItem itemLabel="Female" itemValue="FEMALE"/>
+                    <f:selectItem itemLabel="Others" itemValue="OTHERS"/>
+                </h:selectOneRadio>
+                <h:message for="gender" style="color:red"/>
+
+                <h:outputLabel for="email" value="Enter Email"/>
+                <h:inputText id="email" required="true" requiredMessage="Enter Email" value="#{libbean.email}"/>
+                <h:message for="email" style="color:red"/>
+
+                <h:outputLabel for="password" value="Enter Password"/>
+                <h:inputSecret id="password" required="true" requiredMessage="Enter Password" value="#{libbean.password}"/>
+                <h:message for="password" style="color:red"/>
+
+                <h:outputLabel for="contact" value="Enter Contact"/>
+                <h:inputText id="contact" required="true" requiredMessage="Enter Contact" validatorMessage="Contact No. must contain 10 digits only" value="#{libbean.contact}">
+                    <f:validateRegex pattern="[6789][0-9]{9}"/>
+                </h:inputText>
+                <h:message for="contact" style="color:red"/>
+
+                <h:outputLabel for="add"/>
+                <h:commandButton value="Submit" styleClass="button" action="#{libbean.add()}"/>
+                <h:message for=""/>
+            </h:panelGrid>
+        </h:form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+    <title>Admin Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative; /* Needed for the pseudo-element positioning */
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-image: url('https://lh5.googleusercontent.com/proxy/YVNYLiB47tctN9kUQYoNnQCXr2dvkEnIX0dVPaW-J7gXeIrn-m--OO0t6A1hEN99L2sWgtxDeWPj4OLsKFlYcsX4H5RAdZ4YVqMPd7WrVH1iBJc-HcMM4DxVcguKSccxQ0WCiavRDhoOh_ul'); /* Background image */
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow: hidden; /* Prevent scrollbar due to pseudo-element */
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3); /* White overlay with opacity */
+            z-index: -1; /* Place the overlay behind the content */
+        }
+
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-navbar {
+            background-color: #DDDDDD; /* light grey for the navbar */
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B; /* brown underline */
+            text-align: center;
+            margin-top: 60px; /* Space below the title bar */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .button {
+            color: white; /* Text color of the button */
+            background-color: #d5724d; /* Orange background color */
+            border: none; /* Remove border */
+            padding: 14px 20px; /* Padding inside the button */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin: 0 10px; /* Space between buttons */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .main-navbar .button:hover {
+            background-color: #b45a3f; /* Darker shade of orange on hover */
+        }
+
+        .admin-navbar {
+            background-color: #333;
+            color: #ffffff;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 120px; /* Space below the main navbar */
+        }
+
+        .admin-navbar .button {
+            color: white; /* Text color of the button */
+            background-color: #d5724d; /* Orange background color */
+            border: none; /* Remove border */
+            padding: 14px 20px; /* Padding inside the button */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin: 0 10px; /* Space between buttons */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .admin-navbar .button:hover {
+            background-color: #b45a3f; /* Darker shade of orange on hover */
+        }
+
+        .content {
+            margin-top: 200px; /* Add margin-top to ensure content is not hidden behind the navbars */
+            padding: 10px;
+            display: flex; /* Use flexbox to center the welcome message */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            min-height: calc(100vh - 200px); /* Ensure it takes the full remaining height */
+        }
+
+        .welcome-box {
+            background-color: rgba(255, 255, 255, 0.8); /* White background with slight transparency */
+            padding: 70px 80px; /* Increased padding around the content */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+            text-align: center; /* Center text inside the box */
+            width: 60%; /* Increased width for a more spacious look */
+            max-width: 500px; /* Limit maximum width to 500px for large screens */
+            height: 200px; /* Fixed height for consistency */
+            display: flex; /* Flexbox to align content */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            transition: box-shadow 0.3s; /* Smooth transition for the shadow effect */
+        }
+
+        .welcome-box:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker grey shadow on hover */
+        }
+
+        .welcome-text {
+            font-size: 40px; /* Increase the font size */
+            font-weight: bold; /* Make the text bold */
+            color: #333; /* Text color for readability */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="title-bar">
+        <h1>Library Management System</h1>
+    </div>
+
+    <div class="main-navbar">
+        <h:form>
+            <h:commandLink value="View Librarians" action="viewalllibrarians.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Pending Librarians" action="pendingregs.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Pending Users" action="pendingusers.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View Users" action="viewallusers.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Add Book" action="addbook.jsp" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View All Books" action="viewallbooksad.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Logout" action="#{adminbean.logout()}" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+        </h:form>
+    </div>
+
+    <div class="content">
+        <h:panelGroup styleClass="welcome-box">
+            <h:outputText value="Welcome, #{adminbean.admin.username}!" styleClass="welcome-text" />
+        </h:panelGroup>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+.body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0; /* light grey */
+            margin: 0;
+            padding: 0;
+        }
+        .title-bar {
+            background-color: #222; /* dark grey for the title bar */
+            color: #ffffff; /* white color for text */
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar {
+            background-color: #DDDDDD; /* light grey for the navbar */
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B; /* brown underline */
+            text-align: center;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #ffffff; /* white color for text */
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #A52A2A; /* blue background */
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+        .navbar a:hover {
+            background-color: #0056b3; /* darker blue on hover */
+            color: #ffffff; /* white color for text on hover */
+        }
+        .navbar h:form {
+            display: inline; /* Ensure form does not take extra space */
+        }

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>View All Librarians</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-navbar {
+            background-color: #DDDDDD; /* light grey for the navbar */
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B; /* brown underline */
+            text-align: center;
+            margin-top: 60px; /* Space below the title bar */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .button {
+            color: white; /* Text color of the button */
+            background-color: #d5724d; /* Orange background color */
+            border: none; /* Remove border */
+            padding: 14px 20px; /* Padding inside the button */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin: 0 10px; /* Space between buttons */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .main-navbar .button:hover {
+            background-color: #b45a3f; /* Darker shade of orange on hover */
+        }
+
+        .delete-button {
+            color: white; /* Text color of the button */
+            background-color: #d9534f; /* Red background color */
+            border: none; /* Remove border */
+            padding: 10px 15px; /* Padding inside the button */
+            font-size: 14px; /* Font size */
+            margin: 0; /* No extra space around the button */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .delete-button:hover {
+            background-color: #c9302c; /* Darker shade of red on hover */
+        }
+
+        .content {
+            margin-top: 120px; /* Adjusted margin to account for both navbars */
+            padding: 20px;
+        }
+
+        /* Additional styles for your table if needed */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+    </style>
+</h:head>
+
+<body>
+
+<div class="title-bar">
+    <h1>Library Management System</h1>
+</div>
+
+<div class="main-navbar">
+    <h:form>
+            <h:commandLink value="View Librarians" action="viewalllibrarians.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Pending Librarians" action="pendingregs.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Pending Users" action="pendingusers.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View Users" action="viewallusers.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Add Book" action="addbook.jsp" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View All Books" action="viewallbooksad.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Logout" action="#{adminbean.logout()}" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+        </h:form>
+</div>
+
+<div class="content">
+    <h3 align="center"><u>View All Librarians</u></h3>
+
+    <h:dataTable value="#{adminbean.liblist}" var="lib" border="1">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{lib.id}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{lib.name}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Gender</f:facet>
+            #{lib.gender}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{lib.email}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Contact</f:facet>
+            #{lib.contact}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Status</f:facet>
+            #{lib.approved}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Delete Librarian</f:facet>
+            <h:form>
+                <h:commandButton value="Delete" action="#{adminbean.delete(lib.id)}" styleClass="delete-button"/>
+            </h:form>
+        </h:column>
+
+    </h:dataTable>
+</div>
+
+</body>
+</html>

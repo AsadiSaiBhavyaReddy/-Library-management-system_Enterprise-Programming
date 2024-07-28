@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-image: url('https://lh5.googleusercontent.com/proxy/YVNYLiB47tctN9kUQYoNnQCXr2dvkEnIX0dVPaW-J7gXeIrn-m--OO0t6A1hEN99L2sWgtxDeWPj4OLsKFlYcsX4H5RAdZ4YVqMPd7WrVH1iBJc-HcMM4DxVcguKSccxQ0WCiavRDhoOh_ul');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            z-index: -1;
+        }
+
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-navbar {
+            background-color: #DDDDDD;
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .button {
+            color: white;
+            background-color: #d5724d;
+            border: none;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .main-navbar .button:hover {
+            background-color: #b45a3f;
+        }
+
+        .content {
+            margin-top: 120px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 120px);
+        }
+
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            max-width: 300px;
+            text-align: left;
+            transition: box-shadow 0.3s;
+            margin-top: -60px;
+        }
+
+        .info-box:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-item {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .info-item span {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</h:head>
+<body>
+    <div class="title-bar">
+        <h1>Library Management System</h1>
+    </div>
+
+    <div class="main-navbar">
+        <h:form>
+            <h:commandLink value="Profile" action="librarianprofile.jsf" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View Pending Book Requests" action="viewpendingreqs" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View All Books" action="viewallbookslib" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Logout" action="#{libbean.logout()}" styleClass="button"/>&nbsp;&nbsp;&nbsp;
+        </h:form>
+    </div>
+
+    <div class="content">
+        <div class="info-box">
+            <h:form>
+                <div class="info-item">
+                    <span>Name:</span> #{libbean.librarian.name}
+                </div>
+                <div class="info-item">
+                    <span>Gender:</span> #{libbean.librarian.gender}
+                </div>
+                <div class="info-item">
+                    <span>Email:</span> #{libbean.librarian.email}
+                </div>
+                <div class="info-item">
+                    <span>Contact:</span> #{libbean.librarian.contact}
+                </div>
+            </h:form>
+        </div>
+    </div>
+</body>
+</html>

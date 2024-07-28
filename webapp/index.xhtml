@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .menu-container {
+            position: relative;
+            background-image: url('https://biyanitechnologies.com/img/library%20management%20system.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .menu-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+            z-index: 1;
+        }
+        .menu-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffffff; /* White border around the box */
+            width: 40%; /* Reduced width */
+            margin-top: -300px; /* Adjust the value as needed to move the grid up */
+            z-index: 2;
+        }
+        .menu-item {
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-family: 'Verdana', Times, serif; /* Font style changed to Verdana */
+            font-weight: bold; /* Make the text bold */
+            background-color: #000000;
+            color: #ffffff;
+            border: 1.5px solid #d5724d; /* Border color for all sides */
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+        .menu-item:hover {
+            background-color: #444444;
+        }
+    </style>
+</h:head>
+<body>
+
+<div class="title-bar">
+    <h1>Library Management System</h1>
+</div>
+
+<div class="menu-container">
+    <div class="menu-grid">
+        <h:form>
+            <h:commandLink action="adminlogin" value="Admin Login" styleClass="menu-item" />
+            <h:commandLink action="librarianreg" value="Librarian Registration" styleClass="menu-item" />
+            <h:commandLink action="librarianlogin" value="Librarian Login" styleClass="menu-item" />
+            <h:commandLink action="userreg" value="User Registration" styleClass="menu-item" />
+            <h:commandLink action="userlogin" value="User Login" styleClass="menu-item" />
+        </h:form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <title>View Pending Requests</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0; /* Light background color */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-navbar {
+            background-color: #DDDDDD; /* Light grey for the navbar */
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B; /* Brown underline */
+            text-align: center;
+            margin-top: 60px; /* Space below the title bar */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better separation */
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .button {
+            color: white; /* Text color of the button */
+            background-color: #d5724d; /* Orange background color */
+            border: none; /* Remove border */
+            padding: 14px 20px; /* Padding inside the button */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin: 0 10px; /* Space between buttons */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .main-navbar .button:hover {
+            background-color: #b45a3f; /* Darker shade of orange on hover */
+        }
+
+        .content {
+            margin-top: 120px; /* Adjusted margin to account for both navbars */
+            padding: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4; /* Light grey background for header cells */
+        }
+
+        .accept-button {
+            color: white; /* Text color of the button */
+            background-color: #28a745; /* Green background color for accept */
+            border: none; /* Remove border */
+            padding: 10px 15px; /* Padding inside the button */
+            font-size: 14px; /* Font size */
+            margin: 0; /* No extra space around the button */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Cursor change on hover */
+        }
+
+        .accept-button:hover {
+            background-color: #218838; /* Darker shade of green on hover */
+        }
+
+        .reject-button {
+            color: white; /* Text color of the button */
+            background-color: #dc3545; /* Red background color for reject */
+            border: none; /* Remove border */
+            padding: 10px 15px; /* Padding inside the button */
+            font-size: 14px; /* Font size */
+            margin: 0; /* No extra space around the button */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            display: inline-block; /* Display as an inline-block element */
+            transition: background-color 0.3s; /* Smooth background color transition */
+            cursor: pointer; /* Cursor change on hover */
+        }
+
+        .reject-button:hover {
+            background-color: #c82333; /* Darker shade of red on hover */
+        }
+    </style>
+</h:head>
+
+<body>
+    <div class="title-bar">
+        <h1>Library Management System</h1>
+    </div>
+
+    <div class="main-navbar">
+        <h:form>
+            <h:commandLink value="Profile" action="librarianprofile.jsf" styleClass="button" />&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View Pending Book Requests" action="viewpendingreqs.jsf" styleClass="button" />&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="View All Books" action="viewallbookslib.jsf" styleClass="button" />&nbsp;&nbsp;&nbsp;
+            <h:commandLink value="Logout" action="#{libbean.logout}" styleClass="button" />&nbsp;&nbsp;&nbsp;
+        </h:form>
+    </div>
+
+    <div class="content">
+        <h3 align="center"><u>View Pending Requests</u></h3>
+
+        <center>
+            <h:form>
+                <h:dataTable value="#{libbean.pendingreqs}" var="lib">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        #{lib.id}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{lib.name}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Title</f:facet>
+                        #{lib.title}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Approve/Reject</f:facet>
+                        <h:commandButton value="Accept" action="#{libbean.accept(lib.id)}" styleClass="accept-button" />
+                        &nbsp;&nbsp;
+                        <h:commandButton value="Reject" action="#{libbean.reject(lib.id)}" styleClass="reject-button" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </center>
+    </div>
+</body>
+</html>

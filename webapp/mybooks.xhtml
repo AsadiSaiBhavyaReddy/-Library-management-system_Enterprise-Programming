@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>View All Books</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-navbar {
+            background-color: #DDDDDD;
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .button {
+            color: white;
+            background-color: #d5724d;
+            border: none;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .main-navbar .button:hover {
+            background-color: #b45a3f;
+        }
+
+        .content {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</h:head>
+<body>
+
+<div class="title-bar">
+    <h1>Library Management System</h1>
+</div>
+
+<div class="main-navbar">
+    <h:form>
+        <h:commandLink value="Profile" action="userprofile" styleClass="button" />
+        <h:commandLink value="My Books" action="mybooks" styleClass="button" />
+        <h:commandLink value="View All Books" action="viewallbooksuser" styleClass="button" />
+        <h:commandLink value="Logout" action="#{userbean.logout}" styleClass="button" />
+    </h:form>
+</div>
+
+<div class="content">
+    <h3 align="center"><u>View All Books</u></h3>
+
+    <center>
+        <h:dataTable value="#{userbean.reqlist}" var="book" border="1">
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{book.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{book.issue_status}
+            </h:column>
+        </h:dataTable>
+
+        <h:dataTable value="#{userbean.rejlist}" var="book" border="1">
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{book.title}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{book.status}
+            </h:column>
+        </h:dataTable>
+    </center>
+</div>
+
+</body>
+</html>

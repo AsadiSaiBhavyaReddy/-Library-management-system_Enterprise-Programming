@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>View All Books</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .title-bar {
+            background-color: #222;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .main-navbar {
+            background-color: #DDDDDD;
+            width: 100%;
+            overflow: hidden;
+            padding: 10px 0;
+            border-bottom: 2px solid #80461B;
+            text-align: center;
+            margin-top: 60px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .main-navbar .button {
+            color: white;
+            background-color: #d5724d;
+            border: none;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .main-navbar .button:hover {
+            background-color: #b45a3f;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 120px auto 0; /* Adjusted margin-top to fit title and navbar */
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: calc(50% - 20px); /* Adjusted width for two columns */
+            box-sizing: border-box;
+            display: flex;
+            margin-top: 90px; /* Added top margin */
+            align-items: center; /* Vertically center content */
+        }
+
+        .card .card-image {
+            flex: 0 0 200px; /* Fixed width for image */
+            margin-right: 20px; /* Space between image and text */
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Ensures image covers the area without distortion */
+            border-radius: 8px;
+        }
+
+        .card .card-content {
+            flex: 1; /* Allows content to take the remaining space */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h4 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .card .description {
+            font-size: 0.9em;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .card .operations {
+            margin-top: 10px;
+        }
+
+        .card .operations .button {
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .card .operations .request-button {
+            background-color: #5bc0de;
+        }
+
+        .card .operations .request-button:hover {
+            background-color: #31b0d5;
+        }
+
+        .card .operations .details-button {
+            background-color: #5bc0c0;
+        }
+
+        .card .operations .details-button:hover {
+            background-color: #31b0b5;
+        }
+
+        h3 {
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
+</h:head>
+
+<body>
+
+    <div class="title-bar">
+        <h1>Library Management System</h1>
+    </div>
+
+    <div class="main-navbar">
+        <h:form>
+            <h:commandLink value="Back" action="viewallbooksuser.jsf" styleClass="button"/>
+            
+        </h:form>
+    </div>
+
+    <h3>View All Books</h3>
+
+    <div class="card-container">
+        <ui:repeat value="#{adminbean.viewbook}" var="book">
+            <div class="card">
+                <div class="card-image">
+                    <img src="images/#{book.imagedata}" alt="Book Image" />
+                </div>
+                <div class="card-content">
+                    <h4>#{book.title}</h4>
+                    <p><strong>Category:</strong> #{book.category}</p>
+                    <p><strong>Author:</strong> #{book.author}</p>
+                    <p><strong>Description:</strong> <span class="description">#{book.description}</span></p>
+                    <div class="operations">
+                        <h:form>
+                            <h:commandButton value="Request" action="#{bookbean.bookissue(book.id, book.title, userbean.user.name)}" styleClass="button request-button"/>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:repeat>
+    </div>
+
+</body>
+</html>
