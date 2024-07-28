@@ -1,4 +1,4 @@
-# -Library-management-system_Enterprise-Programming
+#Library-management-system_Enterprise-Programming
 This software project will be implemented in Java EE for managing and maintaining libraries in any educational institution through an integrated computerized system. The library management software will allow librarians to operate  more productively while handling the typical day-to-day tasks of a library.
 
 In a traditional library management system, everything is done manually. All the library operations and records, including the number of books, genres of books, names of books, records of the students who’ve issued/returned books, etc., are all done via pen and paper. Naturally, this process requires a significant amount of time, effort, and even human resources.
